@@ -32,15 +32,16 @@ import {
 interface ProfileFormData {
   name: string;
   email: string;
-  password?: string;
-  old_password?: string;
-  password_confirmation?: string;
+  old_password: string;
+  password: string;
+  password_confirmation: string;
 }
 
 const Profile: React.FC = () => {
   const { user, updateUser } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
+  const nameInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
   const oldPasswordInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
@@ -185,6 +186,7 @@ const Profile: React.FC = () => {
 
             <Form initialData={user} ref={formRef} onSubmit={handleProfile}>
               <Input
+                ref={nameInputRef}
                 autoCapitalize="words"
                 name="name"
                 icon="user"
